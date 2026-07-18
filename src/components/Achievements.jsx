@@ -12,12 +12,20 @@ const Achievements = () => {
             color: 'text-yellow-500'
         },
         {
-            title: '190+ LeetCode Problems',
-            description: 'Data Structures and Algorithms',
+            title: 'Solved 300+ DSA Problems',
+            description: '190+ solved on LeetCode and 110+ solved on CodeChef.',
             date: 'Ongoing',
             icon: Code,
             link: 'https://leetcode.com/u/Rohit_allanki/',
             color: 'text-accent'
+        },
+        {
+            title: '28 Public Repositories',
+            description: '90+ GitHub contributions across backend-focused projects and practical implementations.',
+            date: 'GitHub',
+            icon: Trophy,
+            link: 'https://github.com/RohitAllanki04',
+            color: 'text-emerald-500'
         },
         {
             title: 'Enterprise Design Thinking',
@@ -63,7 +71,7 @@ const Achievements = () => {
                     </p>
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     {items.map((item, index) => (
                         <motion.div
                             key={index}
@@ -72,16 +80,16 @@ const Achievements = () => {
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1, duration: 0.6 }}
                             whileHover={{ y: -5 }}
-                            className="bg-secondary/20 backdrop-blur-xl rounded-[2.5rem] border-2 border-border/50 hover:border-accent/40 transition-all duration-500 group overflow-hidden relative"
+                            className="bg-white/8 backdrop-blur-2xl rounded-[2rem] border border-white/15 hover:border-accent/40 transition-all duration-500 group overflow-hidden relative shadow-xl shadow-black/10"
                         >
-                            <div className="p-8">
-                                <div className="flex items-start gap-6 mb-6">
-                                    <div className="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
-                                        <item.icon className={`${item.color}`} size={32} />
+                            <div className="p-6">
+                                <div className="flex items-start gap-4 mb-5">
+                                    <div className="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
+                                        <item.icon className={`${item.color}`} size={28} />
                                     </div>
                                     <div className="flex-1 min-w-0">
-                                        <h3 className="text-xl font-black text-foreground mb-2 leading-tight group-hover:text-accent transition-colors">{item.title}</h3>
-                                        <p className="text-muted-foreground font-medium mb-2">{item.description}</p>
+                                        <h3 className="text-lg font-black text-foreground mb-1 leading-tight group-hover:text-accent transition-colors">{item.title}</h3>
+                                        <p className="text-muted-foreground font-medium mb-2 text-sm leading-relaxed">{item.description}</p>
                                         <span className="px-3 py-1 bg-accent/5 text-[10px] font-black uppercase tracking-widest text-accent rounded-full border border-accent/10">
                                             {item.date}
                                         </span>
@@ -93,7 +101,7 @@ const Achievements = () => {
                                         href={item.link}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center gap-2 text-xs font-black uppercase tracking-widest text-foreground/50 hover:text-accent transition-colors group/link mt-4 pt-4 border-t border-border/50"
+                                        className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-foreground/50 hover:text-accent transition-colors group/link mt-3 pt-3 border-t border-border/50"
                                     >
                                         Verify Credential
                                         <ExternalLink size={14} className="group-hover/link:translate-x-1 transition-transform" />

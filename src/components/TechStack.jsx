@@ -1,30 +1,100 @@
 import { motion } from 'framer-motion';
 import {
-    Code2, Database, Layout, Server, Settings, Globe,
-    Cpu, Terminal, Cloud, Shield, Box, BookOpen
+    SiSpringboot,
+    SiSpringsecurity,
+    SiSpring,
+    SiMysql,
+    SiPostgresql,
+    SiJavascript,
+    SiReact,
+    SiHtml5,
+    SiTailwindcss,
+    SiGithub,
+    SiPostman,
+    SiDocker,
+    SiJunit5,
+    SiHibernate,
+} from 'react-icons/si';
+import { FaJava, FaGitAlt, FaDocker, FaJenkins, FaToolbox, FaDatabase } from 'react-icons/fa6';
+import {
+    Layout, Server, Settings, BookOpen, Database
 } from 'lucide-react';
+
+const skillIcons = {
+    Java: FaJava,
+    'Spring Boot': SiSpringboot,
+    'Spring Security': SiSpringsecurity,
+    'Spring MVC': SiSpring,
+    'Spring Data': SiSpring,
+    'Hibernate/JPA': SiHibernate,
+    'REST APIs': null,
+    MySQL: SiMysql,
+    PostgreSQL: SiPostgresql,
+    'React.js': SiReact,
+    JavaScript: SiJavascript,
+    'HTML/CSS': SiHtml5,
+    TailwindCSS: SiTailwindcss,
+    'Git/GitHub': FaGitAlt,
+    Postman: SiPostman,
+    Docker: FaDocker,
+    Maven: FaToolbox,
+    JUnit: SiJunit5,
+    JWT: null,
+    'Spring Cloud Gateway': SiSpring,
+    'Spring Cloud Netflix Eureka': SiSpring,
+    OpenFeign: SiSpring,
+    'Load Balancing': null,
+    'Service Registry': null,
+    'CompletableFuture': null,
+    'Caffeine Cache': null,
+    SQL: null,
+    'PL/SQL': FaDatabase,
+    'GitHub API': SiGithub,
+    Render: null,
+    'Chart.js': null,
+    'IntelliJ IDEA': null,
+    'VS Code': null,
+    'Algorithmic Problem Solving': null,
+    'Agile Testing': FaJenkins,
+    'Software Development Life Cycle': null,
+};
+
+const skillList = (skills) => skills.map((skill) => ({
+    label: skill,
+    icon: skillIcons[skill] ?? null,
+}));
 
 const TechStack = () => {
     const categories = [
         {
             title: "Backend & Core",
             icon: Server,
-            skills: ["Java", "Spring Boot", "Spring Security", "Hibernate/JPA", "REST APIs", "MySQL"]
+            skills: skillList(["Java", "Spring Boot", "Spring Security", "Spring MVC", "Spring Data", "REST APIs", "Hibernate/JPA", "JWT", "JUnit", "Maven"])
+        },
+        {
+            title: "Architecture & Integration",
+            icon: Settings,
+            skills: skillList(["Microservices", "Spring Cloud Gateway", "Spring Cloud Netflix Eureka", "OpenFeign", "Load Balancing", "Service Registry", "CompletableFuture", "Caffeine Cache", "Docker"])
+        },
+        {
+            title: "Databases",
+            icon: Database,
+            skills: skillList(["MySQL", "PostgreSQL", "SQL", "PL/SQL", "Database Design", "Database Modeling", "Database Optimization"])
         },
         {
             title: "Frontend",
             icon: Layout,
-            skills: ["React.js", "JavaScript", "HTML/CSS", "TailwindCSS"]
+            skills: skillList(["React.js", "JavaScript", "Chart.js", "HTML/CSS", "TailwindCSS"])
         },
         {
             title: "CS Fundamentals",
             icon: BookOpen,
-            skills: ["Operating Systems", "DBMS", "Computer Networks", "OOPs", "DSA"]
+            skills: skillList(["Operating Systems", "DBMS", "Computer Networks", "OOP", "DSA", "Algorithmic Problem Solving"])
         },
         {
             title: "Tools & Concepts",
             icon: Settings,
-            skills: ["Git/GitHub", "Maven", "Postman", "IntelliJ IDEA", "VS Code"]
+            skills: skillList(["Git/GitHub", "Postman", "IntelliJ IDEA", "VS Code", "GitHub API", "Render", "Agile Testing", "Software Development Life Cycle"])
         }
     ];
 
@@ -66,7 +136,7 @@ const TechStack = () => {
                     </div>
                 </div> */}
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto auto-rows-fr">
                     {categories.map((category, index) => (
                         <motion.div
                             key={category.title}
@@ -77,25 +147,30 @@ const TechStack = () => {
                             whileHover={{ y: -10 }}
                             className="relative group h-full"
                         >
-                            <div className="h-full bg-secondary/30 backdrop-blur-md border-2 border-border/50 rounded-[2.5rem] p-8 flex flex-col transition-all duration-500 hover:border-accent group-hover:shadow-[0_20px_50px_rgba(255,103,0,0.15)]">
+                            <div className="h-full min-h-[290px] bg-white/8 backdrop-blur-2xl border border-white/15 rounded-[2rem] p-6 md:p-7 flex flex-col transition-all duration-500 hover:border-accent group-hover:shadow-[0_20px_50px_rgba(255,103,0,0.18)] shadow-xl shadow-black/10">
                                 {/* Icon Container */}
-                                <div className="w-16 h-16 bg-accent/20 rounded-2xl mb-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
-                                    <category.icon className="text-accent" size={32} />
+                                <div className="w-14 h-14 bg-accent/20 rounded-2xl mb-5 flex items-center justify-center transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
+                                    <category.icon className="text-accent" size={28} />
                                 </div>
 
-                                <h3 className="text-2xl font-black text-foreground mb-6 group-hover:text-accent transition-colors">
+                                <h3 className="text-xl font-black text-foreground mb-4 group-hover:text-accent transition-colors">
                                     {category.title}
                                 </h3>
 
-                                <div className="flex flex-wrap gap-2 mt-auto">
-                                    {category.skills.map((skill, sIdx) => (
-                                        <span
+                                <div className="flex flex-wrap gap-2 mt-auto content-start">
+                                    {category.skills.map((skill, sIdx) => {
+                                        const SkillIcon = skill.icon;
+
+                                        return (
+                                            <span
                                             key={sIdx}
-                                            className="px-3 py-1.5 bg-background/50 border border-border/50 rounded-xl text-xs font-bold text-muted-foreground group-hover:text-foreground group-hover:border-accent/40 transition-all duration-300"
+                                            className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-background/50 border border-border/50 rounded-xl text-[11px] font-bold text-muted-foreground group-hover:text-foreground group-hover:border-accent/40 transition-all duration-300"
                                         >
-                                            {skill}
+                                            {SkillIcon ? <SkillIcon className="h-3 w-3 shrink-0" /> : null}
+                                            <span>{skill.label}</span>
                                         </span>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
 
                                 {/* Floating accent element */}

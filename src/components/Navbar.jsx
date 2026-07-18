@@ -8,40 +8,60 @@ const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState('');
     const [scrollProgress, setScrollProgress] = useState(0);
+    const [isVisible, setIsVisible] = useState(false);
     const { theme, setTheme } = useTheme();
 
     useEffect(() => {
+        let scrollTimeout;
+
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
+            setIsVisible(true);
+
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                setIsVisible(false);
+            }, 5000);
 
             // Calculate scroll progress
             const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
             const progress = (window.scrollY / totalScroll) * 100;
             setScrollProgress(progress);
         };
+
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        return () => {
+            clearTimeout(scrollTimeout);
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
-    // Track active section based on scroll position - More precise intersection observer
+    // Track active section based on scroll position so footer sections are also detected reliably
     useEffect(() => {
-        const sections = document.querySelectorAll('section[id]');
-        const options = {
-            root: null,
-            rootMargin: '-40% 0px -40% 0px',
-            threshold: 0
-        };
+        const sections = Array.from(document.querySelectorAll('section[id], footer[id]'));
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setActiveSection(entry.target.id);
+        const updateActiveSection = () => {
+            const scrollPosition = window.scrollY + window.innerHeight * 0.35;
+            let currentSection = '';
+
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (scrollPosition >= sectionTop) {
+                    currentSection = section.id;
                 }
             });
-        }, options);
 
-        sections.forEach(section => observer.observe(section));
-        return () => sections.forEach(section => observer.unobserve(section));
+            setActiveSection(currentSection);
+        };
+
+        updateActiveSection();
+        window.addEventListener('scroll', updateActiveSection, { passive: true });
+        window.addEventListener('resize', updateActiveSection);
+
+        return () => {
+            window.removeEventListener('scroll', updateActiveSection);
+            window.removeEventListener('resize', updateActiveSection);
+        };
     }, []);
 
     const navLinks = [
@@ -49,6 +69,7 @@ const Navbar = () => {
         { name: 'Tech', href: '#tech' },
         { name: 'Experience', href: '#experience' },
         { name: 'Projects', href: '#projects' },
+        { name: 'Honors', href: '#achievements' },
         { name: 'Contact', href: '#contact' },
     ];
 
@@ -63,7 +84,7 @@ const Navbar = () => {
                 transition={{ type: "spring", stiffness: 100, damping: 20 }}
             />
 
-            <header className="fixed top-0 w-full z-50 flex justify-center pointer-events-none pt-6 px-4">
+            <header className={`fixed top-0 w-full z-50 flex justify-center pointer-events-none px-4 transition-all duration-300 ${isVisible ? 'translate-y-0 opacity-100 pt-6' : '-translate-y-6 opacity-0 pt-2'}`}>
                 <nav
                     className={`flex items-center gap-2 pointer-events-auto transition-all duration-500 rounded-[2rem] px-4 md:px-6 py-2.5 ${scrolled
                         ? 'bg-background/80 backdrop-blur-2xl border border-border/50 shadow-[0_20px_50px_rgba(0,0,0,0.1)]'

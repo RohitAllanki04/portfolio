@@ -5,7 +5,7 @@ import profileImage from '../assets/22BCE20057_AllankiRohit.jpg';
 const About = () => {
     const stats = [
         { icon: GraduationCap, label: 'CGPA', value: '8.20', color: 'text-blue-500' },
-        { icon: Code, label: 'LeetCode Solved', value: '190+', color: 'text-accent' },
+        { icon: Code, label: 'DSA Solved', value: '300+', color: 'text-accent' },
         { icon: Trophy, label: 'GATE 2025', value: 'Qualified', color: 'text-yellow-500' },
     ];
 
