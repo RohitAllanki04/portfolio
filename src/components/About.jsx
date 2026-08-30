@@ -9,7 +9,7 @@ const About = () => {
         { icon: Trophy, label: 'GATE 2025', value: 'Qualified', color: 'text-yellow-500' },
     ];
 
-    const profileImage = new URL('../assets/22BCE20057_AllankiRohit.jpg', import.meta.url).href;
+    const profileImage = new URL('../assets/ChatGPT Image Aug 30, 2026, 06_51_39 PM.png', import.meta.url).href;
 
     return (
         <section id="about" className="py-12 bg-transparent relative overflow-hidden">
