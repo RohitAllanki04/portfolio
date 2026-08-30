@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { User, Code, Trophy, GraduationCap } from 'lucide-react';
-import profileImage from '../assets/22BCE20057_AllankiRohit.jpg';
+import profileImage from '../assets/ChatGPT Image Aug 30, 2026, 06_51_39 PM.png';
 
 const About = () => {
     const stats = [
