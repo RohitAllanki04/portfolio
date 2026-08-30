@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { User, Code, Trophy, GraduationCap } from 'lucide-react';
-import profileImage from '../assets/ChatGPT Image Aug 30, 2026, 06_51_39 PM.png';
+import profileImage from '../assets/ChatGPT Image Aug 30, 2026, 07_01_01 PM.png';
 
 const About = () => {
     const stats = [
@@ -9,7 +9,7 @@ const About = () => {
         { icon: Trophy, label: 'GATE 2025', value: 'Qualified', color: 'text-yellow-500' },
     ];
 
-    const profileImage = new URL('../assets/ChatGPT Image Aug 30, 2026, 06_51_39 PM.png', import.meta.url).href;
+    const profileImage = new URL('../assets/ChatGPT Image Aug 30, 2026, 07_01_01 PM.png', import.meta.url).href;
 
     return (
         <section id="about" className="py-12 bg-transparent relative overflow-hidden">
